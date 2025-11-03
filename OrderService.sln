@@ -2,6 +2,13 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{E460920A-4814-4402-BB7C-B985D3FF9333}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.Data", "OrderService.Data\OrderService.Data.csproj", "{14F26869-6CF8-44F2-9A9F-07A17F707E2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E973BF7-8C19-49DA-AA49-FA6D3B9061D8}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +19,9 @@ Global
 		{E460920A-4814-4402-BB7C-B985D3FF9333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E460920A-4814-4402-BB7C-B985D3FF9333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E460920A-4814-4402-BB7C-B985D3FF9333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F26869-6CF8-44F2-9A9F-07A17F707E2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F26869-6CF8-44F2-9A9F-07A17F707E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F26869-6CF8-44F2-9A9F-07A17F707E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F26869-6CF8-44F2-9A9F-07A17F707E2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
