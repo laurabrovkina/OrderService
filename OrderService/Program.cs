@@ -29,3 +29,5 @@ using (var scope = app.Services.CreateScope())
 app.MapGraphQL();
 
 app.RunWithGraphQLCommands(args);
+
+public partial class Program;

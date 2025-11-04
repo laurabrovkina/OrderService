@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\OrderService\OrderService.csproj" />
+    </ItemGroup>
+    
+    <Target Name="CopyLinkedContentFiles" BeforeTargets="PreBuildEvent">
+        <Copy SourceFiles="..\OrderService\schema.graphql" DestinationFiles=".\schema.graphql" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" />
+    </Target>
+
+</Project>
