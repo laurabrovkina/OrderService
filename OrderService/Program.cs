@@ -23,7 +23,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<OrderDbReadContext>();
-    dbContext.Database.EnsureCreated();
+    dbContext.Database.Migrate();
+    
+    var ddlScript = dbContext.Database.GenerateCreateScript();
+    // Write it to a file
+    File.WriteAllText("../OrderService.IntegrationTests/Database/initdb.sql", ddlScript);
 }
 
 app.MapGraphQL();

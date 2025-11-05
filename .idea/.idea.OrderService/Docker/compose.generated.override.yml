@@ -1,0 +1,19 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.7"
+services:
+  docker_tests:
+    build:
+      context: "E:\\z_examples\\OrderService"
+      dockerfile: "Dockerfile"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/OrderService.dll"
+    environment: {}
+    image: "orderservice:dev"
+    ports: []
+    volumes:
+    - "E:\\z_examples\\OrderService\\OrderService:/app:rw"
+    - "E:\\z_examples\\OrderService:/src:rw"
+    - "C:\\Users\\laura\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
