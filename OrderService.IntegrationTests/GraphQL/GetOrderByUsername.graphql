@@ -1,0 +1,6 @@
+﻿query getOrderByUserName($username: String){
+    orderByUserName(username: $username){
+        username
+        orderType
+    }
+}

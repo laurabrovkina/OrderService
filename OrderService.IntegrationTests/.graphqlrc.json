@@ -1,0 +1,12 @@
+﻿{
+  "schema": "schema.graphql",
+  "documents": "**/GraphQL/*.graphql",
+  "extensions": {
+    "strawberryShake": {
+      "name": "OrderServiceClient",
+      "namespace": "OrderService.IntegrationTests.GraphQL",
+      "dependencyInjection": true,
+      "outputDirectory": "Generated"
+    }
+  }
+}
