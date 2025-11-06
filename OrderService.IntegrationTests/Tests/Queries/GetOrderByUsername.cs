@@ -26,6 +26,7 @@ public class GetOrderByUsername : IClassFixture<TestFixture>
         
         // Act
         var response = await client.GetOrderByUserName.ExecuteAsync(order.Username);
+        await _fixture.DeleteOrder(order);
         
         // Assert
         response.Data.ShouldNotBeNull();

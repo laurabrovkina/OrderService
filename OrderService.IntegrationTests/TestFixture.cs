@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OrderService.Data.DatabaseConfiguration;
@@ -38,6 +39,13 @@ public class TestFixture : WebApplicationFactory<Program>
     {
         await using var dbContext = GetOrderDbReadContext();
         await dbContext.Orders.AddAsync(order);
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteOrder(OrderDbOrder order)
+    {
+        await using var dbContext = GetOrderDbReadContext();
+        dbContext.Orders.Remove(order);
         await dbContext.SaveChangesAsync();
     }
 

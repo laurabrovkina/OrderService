@@ -7,6 +7,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0E973BF7-8C19-49DA-AA49-FA6D3B9061D8}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.IntegrationTests", "OrderService.IntegrationTests\OrderService.IntegrationTests.csproj", "{6A44EA7A-C5E9-4A01-9594-40A027BA7F47}"
