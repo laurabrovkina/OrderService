@@ -12,9 +12,13 @@ type Order {
   orderType: OrderType!
 }
 
+"""
+The Query class serves as the entry point
+for GraphQL queries in the OrderService application.
+"""
 type Query {
   "Get Order by Username."
-  order(username: String): Order @cost(weight: "10")
+  orderByUserName(username: String): Order @cost(weight: "10")
 }
 
 enum OrderType {
