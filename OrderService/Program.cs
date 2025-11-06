@@ -3,6 +3,7 @@ using OrderService.Data.DatabaseConfiguration;
 using OrderService.GraphQL;
 using OrderService.GraphQL.Types;
 using Microsoft.EntityFrameworkCore;
+using Path = System.IO.Path;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +28,13 @@ using (var scope = app.Services.CreateScope())
     
     var ddlScript = dbContext.Database.GenerateCreateScript();
     // Write it to a file
-    File.WriteAllText("../OrderService.IntegrationTests/Database/initdb.sql", ddlScript);
+    // bin\Debug\net9.0\
+    var baseDir = AppContext.BaseDirectory;
+    var projectRoot = Path.GetFullPath(Path.Combine(baseDir, @"..\..\..\.."));
+    var targetPath = Path.Combine(projectRoot, "OrderService.IntegrationTests", "Database", "initdb.sql");
+
+    Directory.CreateDirectory(Path.GetDirectoryName(targetPath) ?? throw new InvalidOperationException());
+    File.WriteAllText(targetPath, ddlScript);
 }
 
 app.MapGraphQL();
