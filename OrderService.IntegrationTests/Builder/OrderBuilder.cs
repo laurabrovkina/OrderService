@@ -7,14 +7,9 @@ public class OrderBuilder : BaseBuilder<OrderDbOrder>
     public OrderBuilder BasicOrderBuilder()
     {
         Model.Username = "TestUser";
-        Model.OrderTypes = [
-            new OrderDbOrderType
-            {
-                OrderId = Guid.NewGuid(),
-                Name = "Test Order Type",
-                Order = Model
-            }
-        ];
+        Model.OrderTypeId = 0;
+        // this line prevents adding new order types to the database
+        Model.OrderType = null!;
 
         return this;
     }
