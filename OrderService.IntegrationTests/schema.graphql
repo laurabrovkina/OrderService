@@ -2,10 +2,10 @@ schema {
   query: Query
 }
 
-"Order Interface Object"
+"Orders Interface Object"
 type Order {
   """
-  Username is a Unique Order Identifier.
+  Username is a Unique Orders Identifier.
   Also As a Primary Key To Join With Other SubGraph
   """
   username: String!
@@ -17,11 +17,12 @@ The Query class serves as the entry point
 for GraphQL queries in the OrderService application.
 """
 type Query {
-  "Get Order by Username."
+  "Get Orders by Username."
   orderByUserName(username: String): Order @cost(weight: "10")
 }
 
 enum OrderType {
+  UNKNOWN
   INDIVIDUAL
   BULK
   PREPAID

@@ -9,12 +9,13 @@ public class OrderDbReadContext : DbContext
     }
     
     public DbSet<OrderDbOrder> Orders { get; set; }
+    public DbSet<OrderDbOrderType> OrderTypes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<OrderDbOrderType>()
-            .HasOne(e => e.Order)
-            .WithMany(e => e.OrderTypes)
-            .HasForeignKey(e => e.OrderId);
+        modelBuilder.Entity<OrderDbOrder>()
+            .HasOne(e => e.OrderType)
+            .WithMany(e => e.Orders)
+            .HasForeignKey(e => e.OrderTypeId);
     }
 }
