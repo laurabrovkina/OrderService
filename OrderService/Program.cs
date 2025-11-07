@@ -7,7 +7,10 @@ using Path = System.IO.Path;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddMediator();
+builder.Services.AddMediator(options =>
+{
+    options.ServiceLifetime = ServiceLifetime.Scoped;
+});
 
 builder.Services.AddDbContextPool<OrderDbReadContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("OrderDb")));
@@ -24,7 +27,7 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<OrderDbReadContext>();
-    dbContext.Database.Migrate();
+    dbContext.Database.EnsureCreated();
     
     var ddlScript = dbContext.Database.GenerateCreateScript();
     // Write it to a file
