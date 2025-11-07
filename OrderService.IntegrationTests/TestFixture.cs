@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OrderService.Data.DatabaseConfiguration;
 using OrderService.IntegrationTests.GraphQL;
 
@@ -23,6 +23,17 @@ public class TestFixture : WebApplicationFactory<Program>
         _orderDbReadContextOptions = postgreSqlOptionsBuilder.Options;
     }
 
+    protected override IHost CreateHost(IHostBuilder builder)
+    {
+        builder.UseEnvironment("Development");
+        builder.ConfigureHostConfiguration(config =>
+        {
+            config.AddJsonFile("appsettings.json");
+        });
+        
+        return base.CreateHost(builder);
+    }
+
     public IOrderServiceClient GetOrderServiceClient()
     {
         InitializeOrderServiceClient();
@@ -35,9 +46,10 @@ public class TestFixture : WebApplicationFactory<Program>
         return dbContext;
     }
 
-    public async Task CreateOrder(OrderDbOrder order)
+    public async Task CreateOrder(OrderDbOrder order, OrderDbOrderType orderType)
     {
         await using var dbContext = GetOrderDbReadContext();
+        order.OrderType = orderType;
         await dbContext.Orders.AddAsync(order);
         await dbContext.SaveChangesAsync();
     }
@@ -46,6 +58,14 @@ public class TestFixture : WebApplicationFactory<Program>
     {
         await using var dbContext = GetOrderDbReadContext();
         dbContext.Orders.Remove(order);
+        await dbContext.SaveChangesAsync();
+    }
+
+    public async Task DeleteOrderType(OrderDbOrderType orderType)
+    {
+        await using var dbContext = GetOrderDbReadContext();
+        dbContext.OrderTypes.Remove(orderType);
+        dbContext.Orders.RemoveRange(orderType.Orders);
         await dbContext.SaveChangesAsync();
     }
 
