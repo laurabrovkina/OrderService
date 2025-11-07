@@ -4,13 +4,13 @@ using HotChocolate.Types;
 namespace OrderService.GraphQL.Types;
 
 /// <summary>
-/// Order Interface Object
+/// Orders Interface Object
 /// </summary>
 [ObjectType]
-public abstract class Order
+public class Order
 {
     /// <summary>
-    /// Username is a Unique Order Identifier.
+    /// Username is a Unique Orders Identifier.
     /// Also As a Primary Key To Join With Other SubGraph
     /// </summary>
     [Key]

@@ -11,7 +11,7 @@ namespace OrderService.GraphQL;
 public class Query
 {
     /// <summary>
-    /// Get Order by Username.
+    /// Get Orders by Username.
     /// </summary>
     /// <param name="mediator"></param>
     /// <param name="username"></param>
