@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -49,8 +49,9 @@ public class TestFixture : WebApplicationFactory<Program>
     public async Task CreateOrder(OrderDbOrder order, OrderDbOrderType orderType)
     {
         await using var dbContext = GetOrderDbReadContext();
+        dbContext.Attach(order);
         order.OrderType = orderType;
-        await dbContext.Orders.AddAsync(order);
+        dbContext.OrderTypes.Add(orderType);
         await dbContext.SaveChangesAsync();
     }
 
